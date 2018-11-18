@@ -1,0 +1,23 @@
+#Quartus files
+**/hw/**/**/.qsys_edit/**
+**/hw/**/**/db/**
+**/hw/**/**/incremental_db/**
+**/hw/**/**/soc_system/**
+**/hw/**/**/hps_isw_handoff/**
+**/hw/**/**/*.txt
+**/hw/**/**/*.rpt
+**/hw/**/**/*.csv
+**/hw/**/**/*.done
+**/hw/**/**/*.smsg
+**/hw/**/**/*.summary
+**/hw/**/**/*.pin
+**/hw/**/**/*.jdi
+**/hw/**/**/*.sopcinfo
+**/hw/**/**/*.sld
+**/hw/**/**/*.qws
+**/hw/**/**/*.sof
+**/hw/**/**/*.rbf
+**/hw/**/**/*.cdf
+**/hw/**/**/*.stp
+**/hw/**/**/*.cof
+**/hw/**/**/*.bak
