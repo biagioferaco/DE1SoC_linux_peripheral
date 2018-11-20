@@ -6,6 +6,10 @@ export M32
 EXTENSION_360_VIDEO?=0
 export EXTENSION_360_VIDEO
 
+FPGA_PERIPH_DE1SOC?=1
+export FPGA_PERIPH_DE1SOC
+
+
 all:
 	$(MAKE) -C lib/TLibVideoIO              MM32=$(M32)
 	$(MAKE) -C lib/TLibCommon               MM32=$(M32)
