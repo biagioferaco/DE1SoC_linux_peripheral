@@ -69,6 +69,7 @@ class TEncSearch : public TComPrediction
 {
 private:
   TCoeff**        m_ppcQTTempCoeff[MAX_NUM_COMPONENT /* 0->Y, 1->Cb, 2->Cr*/];
+
 #if ADAPTIVE_QP_SELECTION
   TCoeff**        m_ppcQTTempArlCoeff[MAX_NUM_COMPONENT];
 #endif
@@ -96,6 +97,11 @@ protected:
   TComRdCost*     m_pcRdCost;
   TEncEntropy*    m_pcEntropyCoder;
 
+#if FPGA_PERIPH_DE1SOC
+  // FPGA Param
+
+  FPGAParam*      m_pcFPGAParam;
+#endif
   // ME parameters
   Int             m_iSearchRange;
   Int             m_bipredSearchRange; // Search range for bi-prediction
@@ -131,6 +137,9 @@ public:
             const UInt     maxCUHeight,
             const UInt     maxTotalCUDepth,
             TEncEntropy*   pcEntropyCoder,
+#if FPGA_PERIPH_DE1SOC 
+            FPGAParam*     pcFPGAParam,
+#endif
             TComRdCost*    pcRdCost,
             TEncSbac***    pppcRDSbacCoder,
             TEncSbac*      pcRDGoOnSbacCoder );

@@ -896,5 +896,3 @@ struct WCGChromaQPControl
 //! \}
 
 #endif
-
-

@@ -45,6 +45,7 @@
 
 #include "../Lib/TLibCommon/Debug.h"
 
+
 // ====================================================================================================================
 // Main function
 // ====================================================================================================================
@@ -91,15 +92,20 @@ int main(int argc, char* argv[])
 #endif
 
   // starting time
-  Double dResult;
-  clock_t lBefore = clock();
+  //Double dResult;
+  //clock_t lBefore = clock();
+  time_t dResult;
+  time_t lBefore = time(NULL);
+
 
   // call encoding function
   cTAppEncTop.encode();
 
   // ending time
-  dResult = (Double)(clock()-lBefore) / CLOCKS_PER_SEC;
-  printf("\n Total Time: %12.3f sec.\n", dResult);
+  //dResult = (Double)(clock()-lBefore) / CLOCKS_PER_SEC;
+  //printf("\n Total Time: %12.3f sec.\n", dResult
+  dResult = time(NULL) - lBefore;
+  printf("\n Total Time: %ld sec.\n", dResult);
 
   // destroy application encoder class
   cTAppEncTop.destroy();

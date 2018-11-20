@@ -96,6 +96,9 @@ private:
   ParameterSetMap<TComPPS> m_ppsMap;                      ///< PPS. This is the base value. This is copied to TComPicSym
   // RD cost computation
   TComRdCost              m_cRdCost;                      ///< RD cost computation class
+#if FPGA_PERIPH_DE1SOC
+  FPGAParam				  m_cFPGAParam;				      ///< FPGA variables class
+#endif
   TEncSbac***             m_pppcRDSbacCoder;              ///< temporal storage for RD computation
   TEncSbac                m_cRDGoOnSbacCoder;             ///< going on SBAC model for RD stage
 #if FAST_BIT_EST

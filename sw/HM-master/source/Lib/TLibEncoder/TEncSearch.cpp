@@ -222,6 +222,9 @@ Void TEncSearch::init(TEncCfg*       pcEncCfg,
                       const UInt     maxCUHeight,
                       const UInt     maxTotalCUDepth,
                       TEncEntropy*   pcEntropyCoder,
+#if FPGA_PERIPH_DE1SOC 
+                      FPGAParam*     pcFPGAParam,
+#endif
                       TComRdCost*    pcRdCost,
                       TEncSbac***    pppcRDSbacCoder,
                       TEncSbac*      pcRDGoOnSbacCoder
@@ -234,6 +237,9 @@ Void TEncSearch::init(TEncCfg*       pcEncCfg,
   m_bipredSearchRange            = bipredSearchRange;
   m_motionEstimationSearchMethod = motionEstimationSearchMethod;
   m_pcEntropyCoder               = pcEntropyCoder;
+#if FPGA_PERIPH_DE1SOC
+  m_pcFPGAParam      			 = pcFPGAParam;
+#endif
   m_pcRdCost                     = pcRdCost;
 
   m_pppcRDSbacCoder              = pppcRDSbacCoder;
@@ -833,7 +839,12 @@ Distortion TEncSearch::xPatternRefinement( TComPattern* pcPatternKey,
   Pel*  piRefPos;
   Int iRefStride = m_filteredBlock[0][0].getStride(COMPONENT_Y);
 
-  m_pcRdCost->setDistParam( pcPatternKey, m_filteredBlock[0][0].getAddr(COMPONENT_Y), iRefStride, 1, m_cDistParam, m_pcEncCfg->getUseHADME() && bAllowUseOfHadamard );
+  m_cDistParam.bitDepth = pcPatternKey->getBitDepthY();
+  m_pcRdCost->setDistParam( pcPatternKey, m_filteredBlock[0][0].getAddr(COMPONENT_Y), iRefStride, 1, m_cDistParam,
+#if FPGA_PERIPH_DE1SOC 
+          m_pcFPGAParam,
+#endif
+          m_pcEncCfg->getUseHADME() && bAllowUseOfHadamard );
 
   const TComMv* pcMvRefine = (iFrac == 2 ? s_acMvRefineH : s_acMvRefineQ);
 
@@ -2266,8 +2277,14 @@ TEncSearch::estIntraPredLumaQT(TComDataCU* pcCU,
       UInt uiStride      = pcPredYuv->getStride( COMPONENT_Y );
       DistParam distParam;
       const Bool bUseHadamard=pcCU->getCUTransquantBypass(0) == 0;
-      m_pcRdCost->setDistParam(distParam, sps.getBitDepth(CHANNEL_TYPE_LUMA), piOrg, uiStride, piPred, uiStride, puRect.width, puRect.height, bUseHadamard);
+      m_pcRdCost->setDistParam(distParam, sps.getBitDepth(CHANNEL_TYPE_LUMA), piOrg, uiStride, piPred, uiStride, puRect.width, puRect.height,
+#if FPGA_PERIPH_DE1SOC 
+              m_pcFPGAParam,
+#endif
+              bUseHadamard );
+
       distParam.bApplyWeight = false;
+
       for( Int modeIdx = 0; modeIdx < numModesAvailable; modeIdx++ )
       {
         UInt       uiMode = modeIdx;
