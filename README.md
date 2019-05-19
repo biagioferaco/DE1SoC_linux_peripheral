@@ -10,8 +10,8 @@ The HEVC encoder doubled the coding efficiency without affecting the quality,
 but increased exponentially the computational cost.
 According to the standard, the encoder, at every cycle, selects a frame from the
 input stream and subdivide it into partitions of blocks.
-Forn each of those block is then performed a prediction with \textbf{Intra} or
-\textbf{Inter} prediction. The first technique performs a comparison between
+Forn each of those block is then performed a prediction with **Intra** or
+**Inter** prediction. The first technique performs a comparison between
 blocks in the same picture and, thus, remove spatial redundancy.
 The second technique, instead, compares blocks of samples present in different
 frames, exploiting motion compensation and reducing temporal redundancy.
