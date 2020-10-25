@@ -6,10 +6,10 @@ use work.type_def.all;
 entity adder is
 	generic ( WIDTH : natural );
 	port (
-		DATAA  : in std_logic_vector(WIDTH-1 downto 0);
-		DATAB  : in std_logic_vector(WIDTH-1 downto 0);
-		RESULT : out std_logic_vector(WIDTH downto 0)
-	);
+			 DATAA  : in std_logic_vector(WIDTH-1 downto 0);
+			 DATAB  : in std_logic_vector(WIDTH-1 downto 0);
+			 RESULT : out std_logic_vector(WIDTH downto 0)
+		 );
 end adder;
 
 architecture behaviour of adder is

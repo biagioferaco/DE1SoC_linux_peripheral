@@ -90,7 +90,7 @@ begin
 					end if;
 
 				when E =>
-					if (res_read ='1') then 										-- 32x32 and 64x64
+					if (res_read ='1') then                      -- 32x32 and 64x64
 						if inc_cnt = clock_cycles then
 							State <= F;
 							inc_cnt <= inc_cnt+1;
@@ -103,7 +103,7 @@ begin
 					end if;
 
 				when F =>
-					if (res_read ='1') then															-- 32x32 and 64x64
+					if (res_read ='1') then                      -- 32x32 and 64x64
 						if inc_cnt = clock_cycles+3 then
 							State <= G;
 						else
@@ -157,47 +157,47 @@ begin
 	LUT_proc: process(ctrl_register)
 	begin
 		case ctrl_register is
-			when "0000" => 		--8x8
+			when "0000" => --8x8
 				clock_cycles <= 1;
 				SEL <= "00";
 				p_enable <= "001";
 				r_enable <= "0000000000001111";
-			when "0001" => 		--16x16 --32x8
+			when "0001" => --16x16 --32x8
 				clock_cycles <= 2;
 				SEL <= "01";
 				p_enable <= "010";
 				r_enable <= "1111111111111111";
-			when "0010" => 		--32x32 --64x16
+			when "0010" => --32x32 --64x16
 				clock_cycles <= 3;
 				SEL <= "10";
 				p_enable <= "100";
 				r_enable <= "1111111111111111";
-			when "0011" => 		--64x64
+			when "0011" => --64x64
 				clock_cycles <= 15;
 				SEL <= "10";
 				p_enable <= "100";
 				r_enable <= "1111111111111111";
-			when "0100" =>		--16x8
+			when "0100" => --16x8
 				clock_cycles <= 2;
 				SEL <= "01";
 				p_enable <= "010";
 				r_enable <= "0000000011111111";
-			when "0101" =>		--32x16
+			when "0101" => --32x16
 				clock_cycles <= 1;
 				SEL <= "10";
 				p_enable <= "100";
 				r_enable <= "1111111111111111";
-			when "0110" =>		--32x24
+			when "0110" => --32x24
 				clock_cycles <= 2;
 				SEL <= "10";
 				p_enable <= "100";
 				r_enable <= "1111111111111111";
-			when "0111" =>		--64x32
+			when "0111" => --64x32
 				clock_cycles <= 7;
 				SEL <= "10";
 				p_enable <= "100";
 				r_enable <= "1111111111111111";
-			when "1000" =>		--64x48
+			when "1000" => --64x48
 				clock_cycles <= 11;
 				SEL <= "10";
 				p_enable <= "100";
