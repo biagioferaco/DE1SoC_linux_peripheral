@@ -61,6 +61,7 @@ increase the performances and satisfy the constaints of the resources.
 it contains the FSM that manages the pipeline inside
 the Datapath, and also controls the interface with the LW Bridge.
 
+<!--
 ## How to create a Linux Peripheral
 Using **Platform Designer** it was possible to create the exact environment in which insert the
 design. By the graphical user interface it is possible to interconnect your custom
@@ -90,6 +91,7 @@ The next step, after that everything has been connected, is to generate the subs
 ###Creation of an HPS Subsystem:
 * **File** -> **Tools** -> **Platform Designer** (**Qsys** in the previous version of Quartus).
 * From the IP Catalog it is possible to add all the
+-->
 
 
 
